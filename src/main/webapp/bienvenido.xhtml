@@ -10,10 +10,10 @@
             <h:form>
 
                
-                <div align="center">
+                <div align="center" class="responsive-img">
                     <p:imageSwitch class="z-depth-3"  effect="fade" slideshowSpeed="5000" id="fadeEffect">
                         <ui:repeat value="#{imagenTbController.imagenes()}" var="image" id="fadeEffectImages">
-                            <p:graphicImage name="images/galeria/#{image}" id="image" height="550" width="1000" />
+                            <p:graphicImage name="images/galeria/#{image}" id="image" height="550" width="100%" />
                         </ui:repeat>
                     </p:imageSwitch>
                 </div>

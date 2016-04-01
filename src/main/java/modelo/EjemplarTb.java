@@ -92,10 +92,20 @@ public class EjemplarTb implements Serializable {
     private List<AgenteIdentificaEjemplarTb> agenteIdentificaEjemplarTbList;
     @OneToMany(mappedBy = "eIdejemplar")
     private List<EjemplarNombrecomunTb> ejemplarNombrecomunTbList;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "ejemplarTb")
+    private List<AgenteIdentificaEjemplarTb> AgenteIdentificaEjemplarTbIDList;
 
     public EjemplarTb() {
     }
 
+    public List<AgenteIdentificaEjemplarTb> getAgenteIdentificaEjemplarTbIDList() {
+        return AgenteIdentificaEjemplarTbIDList;
+    }
+
+    public void setAgenteIdentificaEjemplarTbIDList(List<AgenteIdentificaEjemplarTb> AgenteIdentificaEjemplarTbIDList) {
+        this.AgenteIdentificaEjemplarTbIDList = AgenteIdentificaEjemplarTbIDList;
+    }
+    
     public EjemplarTb(Integer eIdejemplar) {
         this.eIdejemplar = eIdejemplar;
     }

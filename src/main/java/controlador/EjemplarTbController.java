@@ -19,6 +19,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.view.ViewScoped;
+import modelo.AgenteIdentificaEjemplarTb;
+import modelo.EjemplarNombrecomunTb;
+import modelo.NombrecomunTb;
 import modelo.TaxonomiaTb;
 
 @Named("ejemplarTbController")
@@ -27,9 +30,9 @@ public class EjemplarTbController implements Serializable {
 
     @EJB
     private servicio.EjemplarTbFacade ejbFacade;
-    private List<EjemplarTb> items = null,lista=null;
+    private List<EjemplarTb> items = null, lista = null;
     private EjemplarTb selected;
-    private int nombreBusqueda=0;
+    private int nombreBusqueda = 0;
     private String nombre;
 
     public List<EjemplarTb> getLista() {
@@ -39,7 +42,7 @@ public class EjemplarTbController implements Serializable {
     public void setLista(List<EjemplarTb> lista) {
         this.lista = lista;
     }
-    
+
     public EjemplarTbController() {
     }
 
@@ -82,7 +85,7 @@ public class EjemplarTbController implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("EjemplarTbCreated"));
         if (!JsfUtil.isValidationFailed()) {
@@ -189,48 +192,113 @@ public class EjemplarTbController implements Serializable {
         }
 
     }
-    
-    public String calcularTaxonomia(TaxonomiaTb tax){
-        if (tax.getERango()==1){
+
+    public String calcularTaxonomia(TaxonomiaTb tax) {
+        if (tax.getERango() == 1) {
             return "-";
         }
-        if(tax.getERango()==2){
-            String genero = tax.getCNombre(); 
+        if (tax.getERango() == 2) {
+            String genero = tax.getCNombre();
             return genero;
         }
-        if(tax.getERango()==3){
+        if (tax.getERango() == 3) {
             String genero = tax.getEIdniveltaxonomia().getCNombre();
             String especie = tax.getCNombre();
-            return  genero+ ", " +especie; 
+            return genero + ", " + especie;
         }
-        if(tax.getERango()==4 && tax.getCTipo().equals("Subespecie")){
-            String genero=tax.getEIdniveltaxonomia().getEIdniveltaxonomia().getCNombre();
-            String especie=tax.getEIdniveltaxonomia().getCNombre();
-            String subespecie=tax.getCNombre();
+        if (tax.getERango() == 4 && tax.getCTipo().equals("Subespecie")) {
+            String genero = tax.getEIdniveltaxonomia().getEIdniveltaxonomia().getCNombre();
+            String especie = tax.getEIdniveltaxonomia().getCNombre();
+            String subespecie = tax.getCNombre();
             return genero + ", " + especie + " sub. " + subespecie;
         }
-        if(tax.getERango()==4 && tax.getCTipo().equals("Variedad")){
-            String genero=tax.getEIdniveltaxonomia().getEIdniveltaxonomia().getCNombre();
-            String especie=tax.getEIdniveltaxonomia().getCNombre();
-            String variedad=tax.getCNombre();
+        if (tax.getERango() == 4 && tax.getCTipo().equals("Variedad")) {
+            String genero = tax.getEIdniveltaxonomia().getEIdniveltaxonomia().getCNombre();
+            String especie = tax.getEIdniveltaxonomia().getCNombre();
+            String variedad = tax.getCNombre();
             return genero + ", " + especie + " var. " + variedad;
         }
         return "";
     }
-    
-    public void buscar(){
-        if(nombreBusqueda==1){
+
+    public void buscar() {
+        if (nombreBusqueda == 1) {
             items.clear();
-            items= getFacade().EjemplaresPorNombreComun(nombre);
-        }
-        else if(nombreBusqueda==2){
+            items = getFacade().EjemplaresPorNombreComun(nombre);
+        } else if (nombreBusqueda == 2) {
             items.clear();
-            items= getFacade().EjemplaresPorNombreCientifico(nombre);
-        }
-        else{
-             JsfUtil.addErrorMessage("Seleccione nombre común o científico");
+            items = getFacade().EjemplaresPorNombreCientifico(nombre);
+        } else {
+            JsfUtil.addErrorMessage("Seleccione nombre común o científico");
         }
     }
+
+    public String calcularFamilia(TaxonomiaTb tax) {
+        if (tax.getERango() == 1) {
+            String fam = tax.getCNombre().toUpperCase();
+            return fam;
+        }
+        if (tax.getERango() == 2) {
+            String fam = tax.getEIdniveltaxonomia().getCNombre().toUpperCase();
+            return fam;
+        }
+        if (tax.getERango() == 3) {
+            String fam = tax.getEIdniveltaxonomia().getEIdniveltaxonomia().getCNombre().toUpperCase();
+            return fam;
+        }
+        if (tax.getERango() == 4) {
+            String fam = tax.getEIdniveltaxonomia().getEIdniveltaxonomia().getEIdniveltaxonomia().getCNombre().toUpperCase();
+            return fam;
+        }
+        return "";
+    }
+
+    public String calculaNombres(EjemplarTb ej) {
+        ej.getAgenteIdentificaEjemplarTbIDList().clear();
+        ej.setAgenteIdentificaEjemplarTbIDList(getFacade().ejemplarIdentificador(ej.getEIdejemplar(), "Identificador"));
+        String nombres = "", coma = "";
+        if (!ej.getAgenteIdentificaEjemplarTbIDList().isEmpty()) {
+            for (AgenteIdentificaEjemplarTb i : ej.getAgenteIdentificaEjemplarTbIDList()) {
+                nombres = nombres + coma + i.getAgenteTb().getCIniciales();
+                coma = ", ";
+            }
+            nombres = nombres + ".";
+        } else {
+            nombres = "";
+        }
+        return nombres;
+    }
+
+    public String NombresComunesLocales(EjemplarTb ej) {
+        String nombre = "", coma = "";
+        if (!ej.getEjemplarNombrecomunTbList().isEmpty()) {
+            for (EjemplarNombrecomunTb nc : ej.getEjemplarNombrecomunTbList()) {
+                nombre = nombre + coma + nc.getCNombrecomun();
+                coma = ", ";
+            }
+            nombre = nombre + ".";
+        } else {
+            nombre = "";
+        }
+
+        return nombre;
+
+    }
     
+    public String NombresComunesOtros(EjemplarTb ej) {
+        String nombre = "", coma = "";
+        if (!ej.getEIdtaxonomia().getNombrecomunTbList().isEmpty()) {
+            for (NombrecomunTb nc : ej.getEIdtaxonomia().getNombrecomunTbList()) {
+                nombre = nombre + coma + nc.getCNombre();
+                coma = ", ";
+            }
+            nombre = nombre + ".";
+        } else {
+            nombre = "";
+        }
+
+        return nombre;
+
+    }
 
 }
