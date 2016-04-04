@@ -32,8 +32,8 @@ public class EjemplarTbController implements Serializable {
     private servicio.EjemplarTbFacade ejbFacade;
     private List<EjemplarTb> items = null, lista = null;
     private EjemplarTb selected;
-    private int nombreBusqueda = 0;
-    private String nombre;
+    private int nombreBusqueda = 0, nombreBusqueda1 = 0;
+    private String nombre,nombre1;
 
     public List<EjemplarTb> getLista() {
         return lista;
@@ -70,6 +70,22 @@ public class EjemplarTbController implements Serializable {
         return selected;
     }
 
+    public int getNombreBusqueda1() {
+        return nombreBusqueda1;
+    }
+
+    public void setNombreBusqueda1(int nombreBusqueda1) {
+        this.nombreBusqueda1 = nombreBusqueda1;
+    }
+
+    public String getNombre1() {
+        return nombre1;
+    }
+
+    public void setNombre1(String nombre1) {
+        this.nombre1 = nombre1;
+    }
+    
     public int getNombreBusqueda() {
         return nombreBusqueda;
     }
@@ -228,6 +244,18 @@ public class EjemplarTbController implements Serializable {
         } else if (nombreBusqueda == 2) {
             items.clear();
             items = getFacade().EjemplaresPorNombreCientifico(nombre);
+        } else {
+            JsfUtil.addErrorMessage("Seleccione nombre común o científico");
+        }
+    }
+    
+    public void buscar1() {
+        if (nombreBusqueda1 == 1) {
+            items.clear();
+            items = getFacade().EjemplaresPorNombreComun(nombre1);
+        } else if (nombreBusqueda1 == 2) {
+            items.clear();
+            items = getFacade().EjemplaresPorNombreCientifico(nombre1);
         } else {
             JsfUtil.addErrorMessage("Seleccione nombre común o científico");
         }

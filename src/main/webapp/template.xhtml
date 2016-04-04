@@ -9,11 +9,12 @@
     <h:head>
 
         <script src="https://maps.google.com/maps/api/js?sensor=false"  type="text/javascript" ></script>
+        
         <title><ui:insert name="title">Biblioteca Virtual</ui:insert></title>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
         <h:outputScript library="js" name="locale_es.js"/>
-
+        
         <link href="resources/images/planta.png" rel="shortcut icon" type="image/png"/>
 
         <!--Import Google Icon Font-->
@@ -79,6 +80,13 @@
             </p:layoutUnit>
 
         </p:layout>
+        <script>
+            $(document).ready(function () {
+                $('.materialboxed').materialbox();
+                $('.slider').slider({full_width: true});
+            });
+        </script>
+
 
     </h:body>
 
