@@ -22,7 +22,7 @@
                 </font>
             </div>
             <h:form id="ListForm">
-                <p:panelGrid columns="1">
+                <p:panelGrid columns="1" class="centrar hide-on-med-and-down">
 
                     <h:panelGroup>
                         <div class="card-panel z-depth-3" style="text-align: justify" align="center">
@@ -36,9 +36,14 @@
                                 <b>#{ejemplarTbController.calcularFamilia(controladorSesion.ejemplar.EIdtaxonomia)}</b>
                                 <b><i> <br/>#{ejemplarTbController.calcularTaxonomia(controladorSesion.ejemplar.EIdtaxonomia)}.</i></b>
                                 <br/>#{controladorSesion.ejemplar.MDescripcion}.
-                                <br/><br/><b>Determinadores:</b> #{ejemplarTbController.calculaNombres(controladorSesion.ejemplar)} 
+                                <br/><br/><b>Recolectores:</b> #{ejemplarTbController.calculaNombresRecolector(controladorSesion.ejemplar)}
+                                <br/><b>Fecha de recolección: </b>  
+                                <h:outputText value="#{controladorSesion.ejemplar.FFechaInicioIdent}">
+                                    <f:convertDateTime pattern="dd MMMM yyyy" />
+                                </h:outputText>.
+                                <br/><b>Determinadores:</b> #{ejemplarTbController.calculaNombres(controladorSesion.ejemplar)} 
                                 <br/><b>Fecha de identificación: </b>  
-                                <h:outputText value="#{controladorSesion.ejemplar.FFechaFinIdent}" title="#{bundle.ViewProyectoTbTitle_FFechaInicio}">
+                                <h:outputText value="#{controladorSesion.ejemplar.FFechaFinIdent}">
                                     <f:convertDateTime pattern="dd MMMM yyyy" />
                                 </h:outputText>.
                                 <br/><b>Lugar: </b> #{controladorSesion.ejemplar.EIdlocalidad.CNombre}; #{controladorSesion.ejemplar.EIdlocalidad.MDescripcion}. 
@@ -62,6 +67,53 @@
                         </div>
                     </h:panelGroup>
                 </p:panelGrid>
+
+                <p:panelGrid columns="1" class="hide-on-large-only">
+
+                    <h:panelGroup>
+                        <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+
+                            <blockquote>
+                                <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
+                                    Ficha Técnica
+                                </font>
+                            </blockquote>
+                            <font size="4">
+                                <b>#{ejemplarTbController.calcularFamilia(controladorSesion.ejemplar.EIdtaxonomia)}</b>
+                                <b><i> <br/>#{ejemplarTbController.calcularTaxonomia(controladorSesion.ejemplar.EIdtaxonomia)}.</i></b>
+                                <br/>#{controladorSesion.ejemplar.MDescripcion}.
+                                <br/><br/><b>Recolectores:</b> #{ejemplarTbController.calculaNombresRecolector(controladorSesion.ejemplar)}
+                                <br/><b>Fecha de recolección: </b>  
+                                <h:outputText value="#{controladorSesion.ejemplar.FFechaInicioIdent}">
+                                    <f:convertDateTime pattern="dd MMMM yyyy" />
+                                </h:outputText>.
+                                <br/><b>Determinadores:</b> #{ejemplarTbController.calculaNombres(controladorSesion.ejemplar)} 
+                                <br/><b>Fecha de identificación: </b>  
+                                <h:outputText value="#{controladorSesion.ejemplar.FFechaFinIdent}">
+                                    <f:convertDateTime pattern="dd MMMM yyyy" />
+                                </h:outputText>.
+                                <br/><b>Lugar: </b> #{controladorSesion.ejemplar.EIdlocalidad.CNombre}; #{controladorSesion.ejemplar.EIdlocalidad.MDescripcion}. 
+                                <br/><b>Ubicación: </b> #{controladorSesion.ejemplar.EIdlocalidad.EIdcanton.EIdmunicipio.EIddepto.EIdpais.CNombre}, #{controladorSesion.ejemplar.EIdlocalidad.EIdcanton.EIdmunicipio.EIddepto.CNombre}, #{controladorSesion.ejemplar.EIdlocalidad.EIdcanton.EIdmunicipio.CNombre}. 
+                                <c:if test="#{controladorSesion.ejemplar.EIdlocalidad.EIdarea!=null}">
+                                    <br/><b>Área Protegida: </b>#{controladorSesion.ejemplar.EIdlocalidad.EIdarea.CNombre}
+                                </c:if> 
+                                <br/>
+                            </font>
+                            <blockquote>
+                                <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
+                                    Nombres comunes
+                                </font>
+                            </blockquote>
+                            <font size="4">
+                                <b>Locales: </b> #{ejemplarTbController.NombresComunesLocales(controladorSesion.ejemplar)}
+                                <br/><b>Otros nombres: </b> #{ejemplarTbController.NombresComunesOtros(controladorSesion.ejemplar)}
+                            </font>
+                            <br/>
+
+                        </div>
+                    </h:panelGroup>
+                </p:panelGrid>
+                
 
             </h:form>
 

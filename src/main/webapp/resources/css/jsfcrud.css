@@ -26,3 +26,14 @@
     //background-color: white;
 
 }
+
+.centrar
+{
+    position: absolute;
+    left:50%;
+    /*determinamos una anchura*/
+    width:700px;
+    /*indicamos que el margen izquierdo, es la mitad de la anchura*/
+    margin-left:-350px;
+
+}

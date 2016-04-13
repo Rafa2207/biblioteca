@@ -296,6 +296,22 @@ public class EjemplarTbController implements Serializable {
         }
         return nombres;
     }
+    
+    public String calculaNombresRecolector(EjemplarTb ej) {
+        ej.getAgenteIdentificaEjemplarTbList().clear();
+        ej.setAgenteIdentificaEjemplarTbList(getFacade().ejemplarRecolector(ej.getEIdejemplar(), "Recolector"));
+        String nombres = "", coma = "";
+        if (!ej.getAgenteIdentificaEjemplarTbList().isEmpty()) {
+            for (AgenteIdentificaEjemplarTb i : ej.getAgenteIdentificaEjemplarTbList()) {
+                nombres = nombres + coma + i.getAgenteTb().getCIniciales();
+                coma = ", ";
+            }
+            nombres = nombres + ".";
+        } else {
+            nombres = "";
+        }
+        return nombres;
+    }
 
     public String NombresComunesLocales(EjemplarTb ej) {
         String nombre = "", coma = "";
