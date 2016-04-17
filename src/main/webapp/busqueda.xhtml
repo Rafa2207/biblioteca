@@ -23,7 +23,7 @@
             <h:form id="ListForm">
                 <p:panelGrid columns="6" class="hide-on-med-and-down">
                     <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
-                        Buscar nombre:
+                        Buscar ejemplar:
                     </font>
                     <mp:input id="Cientifico" value="#{ejemplarTbController.nombre1}"/>
                     <mp:radioButton id="radio" value="#{ejemplarTbController.nombreBusqueda1}">
@@ -37,7 +37,7 @@
                 <div data-activates="lateral" class="button-collapse hide-on-large-only">
                     <br/>
                     <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
-                        Buscar nombre:
+                        Buscar ejemplar:
                     </font>
                     <p:panelGrid columns="1">
                         <mp:input id="Cientifico1" value="#{ejemplarTbController.nombre}"/>
@@ -74,7 +74,7 @@
                     <p:ajax event="rowSelect"   update=":ListForm:Buscar"/>
                     <p:ajax event="rowUnselect" update=":ListForm:Buscar"/>
 
-                    <p:column style="text-align: left" filterBy="#{item.EIdtaxonomia.CNombre}" filterStyle="display:none">
+                    <p:column width="15%" style="text-align: left" filterBy="#{item.EIdtaxonomia.CNombre}" filterStyle="display:none">
                         <f:facet name="header">
                             <h:outputText value="Familia"/>
                         </f:facet>
@@ -85,6 +85,12 @@
                             <h:outputText value="Información taxonómica"/>
                         </f:facet>
                         <h:outputText value="#{ejemplarTbController.calcularTaxonomia(item.EIdtaxonomia)}"/>
+                    </p:column>
+                    <p:column width="15%" style="text-align: left">
+                        <f:facet name="header">
+                            <h:outputText value="Autores"/>
+                        </f:facet>
+                        <h:outputText value="#{ejemplarTbController.calculaNombres(item)}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
@@ -97,6 +103,14 @@
                             <h:outputText value="Localidad"/>
                         </f:facet>
                         <h:outputText value="#{item.EIdlocalidad.CNombre}"/>
+                    </p:column>
+                    <p:column width="10%" style="text-align: left">
+                        <f:facet name="header">
+                            <h:outputText value="Año"/>
+                        </f:facet>
+                        <h:outputText value="#{item.FFechaFinIdent}">
+                            <f:convertDateTime pattern="yyyy" />
+                        </h:outputText>
                     </p:column>
 
                 </p:dataTable>
