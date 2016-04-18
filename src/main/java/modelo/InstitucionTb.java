@@ -39,6 +39,8 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "InstitucionTb.findByCUrl", query = "SELECT i FROM InstitucionTb i WHERE i.cUrl = :cUrl"),
     @NamedQuery(name = "InstitucionTb.findByBEstado", query = "SELECT i FROM InstitucionTb i WHERE i.bEstado = :bEstado")})
 public class InstitucionTb implements Serializable {
+    @OneToMany(mappedBy = "eIdinstitucion")
+    private List<BibliotecaTb> bibliotecaTbList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -191,6 +193,14 @@ public class InstitucionTb implements Serializable {
     @Override
     public String toString() {
         return "modelo.InstitucionTb[ eIdinstitucion=" + eIdinstitucion + " ]";
+    }
+
+    public List<BibliotecaTb> getBibliotecaTbList() {
+        return bibliotecaTbList;
+    }
+
+    public void setBibliotecaTbList(List<BibliotecaTb> bibliotecaTbList) {
+        this.bibliotecaTbList = bibliotecaTbList;
     }
     
 }

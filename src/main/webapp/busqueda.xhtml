@@ -21,9 +21,9 @@
                 </font>
             </div>
             <h:form id="ListForm">
-                <p:panelGrid columns="6" class="hide-on-med-and-down">
+                <p:panelGrid columns="6" class="hide-on-med-and-down" style="width: 800px">
                     <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
-                        Buscar ejemplar:
+                        Nombre ejemplar:
                     </font>
                     <mp:input id="Cientifico" value="#{ejemplarTbController.nombre1}"/>
                     <mp:radioButton id="radio" value="#{ejemplarTbController.nombreBusqueda1}">
@@ -37,7 +37,7 @@
                 <div data-activates="lateral" class="button-collapse hide-on-large-only">
                     <br/>
                     <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
-                        Buscar ejemplar:
+                        Nombre ejemplar:
                     </font>
                     <p:panelGrid columns="1">
                         <mp:input id="Cientifico1" value="#{ejemplarTbController.nombre}"/>
@@ -60,21 +60,20 @@
                 <p:dataTable id="datalist" class="hoverable bordered centered responsive-table z-depth-2 order-table teal darken-1 "
                              value="#{ejemplarTbController.items}" var="item"
                              selectionMode="single" selection="#{ejemplarTbController.selected}"
-                             rowsPerPageTemplate="10,20,30,40,50"
                              paginator="true"
                              paginatorPosition="bottom"
                              rowKey="#{item.EIdejemplar}"
-                             rows="10"
+                             rows="30"
+                             rowsPerPageTemplate="10,20,30,40,50"
                              emptyMessage="No se encontró información de ejemplares"
                              draggableColumns="true"
                              widgetVar="ejemplarList"
-                             filteredValue="#{ejemplarTbController.lista}"
                              >
 
                     <p:ajax event="rowSelect"   update=":ListForm:Buscar"/>
                     <p:ajax event="rowUnselect" update=":ListForm:Buscar"/>
 
-                    <p:column width="15%" style="text-align: left" filterBy="#{item.EIdtaxonomia.CNombre}" filterStyle="display:none">
+                    <p:column width="15%" filterBy="#{item.EIdtaxonomia.CNombre}" filterStyle="display:none">
                         <f:facet name="header">
                             <h:outputText value="Familia"/>
                         </f:facet>
@@ -86,7 +85,7 @@
                         </f:facet>
                         <h:outputText value="#{ejemplarTbController.calcularTaxonomia(item.EIdtaxonomia)}"/>
                     </p:column>
-                    <p:column width="15%" style="text-align: left">
+                    <p:column width="15%">
                         <f:facet name="header">
                             <h:outputText value="Autores"/>
                         </f:facet>
@@ -94,17 +93,11 @@
                     </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Descripción"/>
-                        </f:facet>
-                        <h:outputText value="#{item.MDescripcion}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
                             <h:outputText value="Localidad"/>
                         </f:facet>
                         <h:outputText value="#{item.EIdlocalidad.CNombre}"/>
                     </p:column>
-                    <p:column width="10%" style="text-align: left">
+                    <p:column width="10%">
                         <f:facet name="header">
                             <h:outputText value="Año"/>
                         </f:facet>
