@@ -22,8 +22,9 @@
                 </font>
             </div>
             <h:form id="ListForm">
-                <p:panelGrid columns="1" class="centrar hide-on-med-and-down">
-
+                
+                <!-- PC-->
+                <p:panelGrid columns="2" columnClasses="cincuenta-porciento, cincuenta-porciento" class="hide-on-med-and-down">
                     <h:panelGroup>
                         <div class="card-panel z-depth-3" style="text-align: justify" align="center">
 
@@ -66,7 +67,16 @@
 
                         </div>
                     </h:panelGroup>
+                    <h:panelGroup>
+                        <p:imageSwitch class="z-depth-3 hide-on-med-and-down" effect="fade" slideshowSpeed="3000" widgetVar="switcher" id="manuelSwitcher">
+                            <ui:repeat value="#{imagenTbController.imagenes()}" var="image" id="manuelSwitcherImages">
+                                <p:graphicImage name="images/galeria/#{image}" id="image" height="500" width="100%"/>
+                            </ui:repeat>
+                        </p:imageSwitch>
+                    </h:panelGroup>
                 </p:panelGrid>
+
+                <!-- Movil -->
 
                 <p:panelGrid columns="1" class="hide-on-large-only">
 
@@ -112,8 +122,18 @@
 
                         </div>
                     </h:panelGroup>
+
+                    <h:panelGroup>
+                        <div align="center">
+                            <p:imageSwitch  effect="fade" slideshowSpeed="3000" >
+                                <ui:repeat value="#{imagenTbController.imagenes()}" var="image">
+                                    <p:graphicImage name="images/galeria/plantaMuestra.png" id="image" height="500" width="500"/>
+                                </ui:repeat>
+                            </p:imageSwitch>
+                        </div>
+                    </h:panelGroup>
                 </p:panelGrid>
-                
+
 
             </h:form>
 
