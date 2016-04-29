@@ -23,126 +23,275 @@
 
             <h:form id="ListForm" >
 
-                <div align="center " class="hide-on-med-and-down">
-                    <blockquote style="text-align: center">
-                        <font face="Cambria" style="color: #006666; font-weight: bold" size="6" >
-                            Organigrama
-                        </font>
-                    </blockquote>
-                    <h:graphicImage class="z-depth-2" name="images/organigrama.png" width="800"/>
-
+                <!-- Comienza opciones-->
+                <div align="center">
+                    <mp:button value="Historia Museo" icon="mdi-action-account-balance" 
+                               actionListener="#{bibliotecaTbController.controlarInformacion(1)}"
+                               update=":ListForm"/>
+                    <mp:button value="Historia Herbario" icon="mdi-maps-local-library" 
+                               actionListener="#{bibliotecaTbController.controlarInformacion(2)}"
+                               update=":ListForm"/>
+                    <mp:button value="Misión" icon="mdi-action-extension" 
+                               actionListener="#{bibliotecaTbController.controlarInformacion(3)}"
+                               update=":ListForm"/>
+                    <mp:button value="Visión" icon="mdi-action-visibility" 
+                               actionListener="#{bibliotecaTbController.controlarInformacion(4)}"
+                               update=":ListForm"/>
+                    <mp:button value="Objetivos" icon="mdi-action-track-changes" 
+                               actionListener="#{bibliotecaTbController.controlarInformacion(5)}"
+                               update=":ListForm"/>
+                    <mp:button value="Contáctanos" icon="mdi-action-info-outline" 
+                               actionListener="#{bibliotecaTbController.controlarInformacion(6)}"
+                               update=":ListForm"/>
                 </div>
-                <div align="center " class="hide-on-large-only">
-                    <blockquote style="text-align: center">
-                        <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
-                            Organigrama
-                        </font>
-                    </blockquote>
-                    <h:graphicImage class="z-depth-2" name="images/organigrama.png" width="95%"/>
+                <!-- Termina opciones-->
 
-                </div>
-                <p:panelGrid columns="2" columnClasses="cincuenta-porciento, cincuenta-porciento" class="hide-on-med-and-down">
-                    <h:panelGroup>
-                        <div class="card-panel z-depth-3" style="text-align: justify" align="center">
-                            <blockquote style="text-align: center">
-                                <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
-                                    Historia
-                                </font>
-                            </blockquote>
-                            <font size="3">
+
+                <!-- Historia Muhnes-->
+                <h:form id="HistoriaM" rendered="#{bibliotecaTbController.control==1}">
+
+                    <div align="center">
+                        <p:panelGrid columns="1" style="width: 830px" class="hide-on-med-and-down">
+                            <h:panelGroup>
+                                <div align="center" class="hide-on-med-and-down card-panel z-depth-3">
+                                    <blockquote style="text-align: center">
+                                        <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
+                                            Organigrama.
+                                        </font>
+                                    </blockquote>
+                                    <h:graphicImage name="images/organigrama.png" width="800"/>
+                                </div>
+                            </h:panelGroup>
+                        </p:panelGrid>
+                    </div>
+
+
+                    <p:panelGrid columns="1" class="hide-on-large-only">
+                        <h:panelGroup>
+                            <div class="card-panel" align="center" >
+                                <blockquote style="text-align: center">
+                                    <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
+                                        Organigrama.
+                                    </font>
+                                </blockquote>
+                                <h:graphicImage name="images/organigrama.png" width="95%"/>
+                            </div>
+                        </h:panelGroup>
+                    </p:panelGrid>
+
+
+                    <div align="center">
+                        <p:panelGrid columns="1" style="width: 830px" class="hide-on-med-and-down">
+                            <h:panelGroup>
+                                <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+                                    <blockquote style="text-align: center">
+                                        <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
+                                            Historia.
+                                        </font>
+                                    </blockquote>
+                                    <font size="3">
+                                        #{bibliotecaTbController.muestraHistoria()}
+                                    </font>
+                                </div>
+                            </h:panelGroup>
+                        </p:panelGrid>
+                    </div>
+
+                    <p:panelGrid columns="1" class="hide-on-large-only">
+                        <h:panelGroup>
+                            <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+                                <blockquote style="text-align: center">
+                                    <font face="Cambria" style="color: #006666; font-weight: bold" size="4" >
+                                        Historia.
+                                    </font>
+                                </blockquote>
+
                                 #{bibliotecaTbController.muestraHistoria()}
-                            </font>
-                        </div>
-                    </h:panelGroup>
+                            </div>
+                        </h:panelGroup>
+                    </p:panelGrid>
 
-                </p:panelGrid>
+                </h:form>
 
-                <p:panelGrid columns="1" class="hide-on-med-and-down centrar">
-                    <h:panelGroup>
-                        <div class="card-panel z-depth-3" style="text-align: justify" align="center">
-                            <blockquote style="text-align: center">
-                                <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
-                                    Misión.
-                                </font>
-                            </blockquote>
-                            <font size="3">
-                                #{bibliotecaTbController.muestraMision()}    
-                            </font><br/><br/>
-                            <blockquote style="text-align: center">
-                                <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
-                                    Visión.
-                                </font>
-                            </blockquote>
-                            <font size="3">
-                                #{bibliotecaTbController.muestraVision()}
-                            </font><br/><br/>
-                            <blockquote style="text-align: center">
-                                <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
-                                    Objetivos.
-                                </font>
-                            </blockquote>
-                            <font size="3">
-                                #{bibliotecaTbController.muestraObjetivo()} 
-                            </font><br/><br/>
+                <!--FIN historia Muhnes-->
 
-                            <blockquote style="text-align: center">
-                                <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
-                                    Información.
-                                </font>
-                            </blockquote>
-                            <font size="3">
-                                #{bibliotecaTbController.muestraInfo()} 
-                            </font><br/><br/>
-                        </div>
-                    </h:panelGroup>
-                </p:panelGrid>
+                <!-- Inicio historia MHES-->
+                <h:form id="HistoriaH" rendered="#{bibliotecaTbController.control==2}">
 
-                <p:panelGrid columns="1" class="hide-on-large-only">
-                    <h:panelGroup>
-                        <div class="card-panel z-depth-3" style="text-align: justify" align="center">
-                            <blockquote style="text-align: center">
-                                <font face="Cambria" style="color: #006666; font-weight: bold" size="4" >
-                                    Historia
-                                </font>
-                            </blockquote>
+                    <div align="center">
+                        <p:panelGrid columns="1" style="width: 830px" class="hide-on-med-and-down">
+                            <h:panelGroup>
+                                <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+                                    <blockquote style="text-align: center">
+                                        <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
+                                            Historia Herbario.
+                                        </font>
+                                    </blockquote>
+                                    <font size="3">
+                                        #{bibliotecaTbController.muestraHistoriaHerbario()}    
+                                    </font>
+                                </div>
+                            </h:panelGroup>
+                        </p:panelGrid>
+                    </div>
 
-                            #{bibliotecaTbController.muestraHistoria()}
-                        </div>
-                    </h:panelGroup>
-                    <h:panelGroup>
-                        <div class="card-panel z-depth-3" style="text-align: justify" align="center">
-                            <blockquote style="text-align: center">
-                                <font face="Cambria" style="color: #006666; font-weight: bold" size="4" >
-                                    Misión.
-                                </font>
-                            </blockquote>
-                            #{bibliotecaTbController.muestraMision()}
-                            <br/><br/>
-                            <blockquote style="text-align: center">
-                                <font face="Cambria" style="color: #006666; font-weight: bold" size="4" >
-                                    Visión.
-                                </font>
-                            </blockquote>
-                            #{bibliotecaTbController.muestraVision()}
-                            <br/><br/>
-                            <blockquote style="text-align: center">
-                                <font face="Cambria" style="color: #006666; font-weight: bold" size="4" >
-                                    Objetivos.
-                                </font>
-                            </blockquote>
-                            #{bibliotecaTbController.muestraObjetivo()}
-                            <br/><br/>
+                    <p:panelGrid columns="1" class="hide-on-large-only">
+                        <h:panelGroup>
+                            <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+                                <blockquote style="text-align: center">
+                                    <font face="Cambria" style="color: #006666; font-weight: bold" size="4" >
+                                        Historia Herbario.
+                                    </font>
+                                </blockquote>
 
-                            <blockquote style="text-align: center">
-                                <font face="Cambria" style="color: #006666; font-weight: bold" size="4" >
-                                    Información.
-                                </font>
-                            </blockquote>
-                            #{bibliotecaTbController.muestraInfo()}
+                                #{bibliotecaTbController.muestraHistoriaHerbario()}
+                            </div>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                </h:form>
+                <!-- Fin historia MHES-->
 
-                        </div>
-                    </h:panelGroup>
-                </p:panelGrid>
+                <!-- Inicio Mision-->
+                <h:form id="Mision" rendered="#{bibliotecaTbController.control==3}">
+                    <div align="center">
+                        <p:panelGrid columns="1" style="width: 830px" class="hide-on-med-and-down">
+                            <h:panelGroup>
+                                <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+                                    <blockquote style="text-align: center">
+                                        <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
+                                            Misión.
+                                        </font>
+                                    </blockquote>
+                                    <font size="3">
+                                        #{bibliotecaTbController.muestraMision()}    
+                                    </font>
+                                </div>
+                            </h:panelGroup>
+                        </p:panelGrid>
+
+                        <p:panelGrid columns="1" class="hide-on-large-only">
+                            <h:panelGroup>
+                                <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+                                    <blockquote style="text-align: center">
+                                        <font face="Cambria" style="color: #006666; font-weight: bold" size="4" >
+                                            Misión.
+                                        </font>
+                                    </blockquote>
+                                    #{bibliotecaTbController.muestraMision()}
+                                </div>
+                            </h:panelGroup>
+                        </p:panelGrid>
+                    </div>
+                </h:form>
+
+                <!-- Fin Mision-->
+
+                <!-- Inicio Vision-->
+                <h:form id="Vision" rendered="#{bibliotecaTbController.control==4}">
+                    <div align="center">
+                        <p:panelGrid columns="1" style="width: 830px" class="hide-on-med-and-down">
+                            <h:panelGroup>
+                                <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+                                    <blockquote style="text-align: center">
+                                        <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
+                                            Visión.
+                                        </font>
+                                    </blockquote>
+                                    <font size="3">
+                                        #{bibliotecaTbController.muestraVision()}    
+                                    </font>
+                                </div>
+                            </h:panelGroup>
+                        </p:panelGrid>
+
+                        <p:panelGrid columns="1" class="hide-on-large-only">
+                            <h:panelGroup>
+                                <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+                                    <blockquote style="text-align: center">
+                                        <font face="Cambria" style="color: #006666; font-weight: bold" size="4" >
+                                            Visión.
+                                        </font>
+                                    </blockquote>
+                                    #{bibliotecaTbController.muestraVision()}
+                                </div>
+                            </h:panelGroup>
+                        </p:panelGrid>
+                    </div>
+                </h:form>
+
+                <!-- Fin Vision-->
+
+                <!-- Inicio Objetivo-->
+                <h:form id="Objetivo" rendered="#{bibliotecaTbController.control==5}">
+                    <div align="center">
+                        <p:panelGrid columns="1" style="width: 830px" class="hide-on-med-and-down">
+                            <h:panelGroup>
+                                <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+                                    <blockquote style="text-align: center">
+                                        <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
+                                            Objetivo.
+                                        </font>
+                                    </blockquote>
+                                    <font size="3">
+                                        #{bibliotecaTbController.muestraObjetivo()}    
+                                    </font>
+                                </div>
+                            </h:panelGroup>
+                        </p:panelGrid>
+
+                        <p:panelGrid columns="1" class="hide-on-large-only">
+                            <h:panelGroup>
+                                <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+                                    <blockquote style="text-align: center">
+                                        <font face="Cambria" style="color: #006666; font-weight: bold" size="4" >
+                                            Objetivo.
+                                        </font>
+                                    </blockquote>
+                                    #{bibliotecaTbController.muestraObjetivo()}
+                                </div>
+                            </h:panelGroup>
+                        </p:panelGrid>
+                    </div>
+                </h:form>
+
+                <!-- Fin Objetivo-->
+
+                <!-- Inicio Contactanos-->
+                <h:form id="Contactanos" rendered="#{bibliotecaTbController.control==6}">
+                    <div align="center">
+                        <p:panelGrid columns="1" style="width: 830px" class="hide-on-med-and-down">
+                            <h:panelGroup>
+                                <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+                                    <blockquote style="text-align: center">
+                                        <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
+                                            Contáctanos.
+                                        </font>
+                                    </blockquote>
+                                    <font size="3">
+                                        #{bibliotecaTbController.muestraInfo()}    
+                                    </font>
+                                </div>
+                            </h:panelGroup>
+                        </p:panelGrid>
+
+                        <p:panelGrid columns="1" class="hide-on-large-only">
+                            <h:panelGroup>
+                                <div class="card-panel z-depth-3" style="text-align: justify" align="center">
+                                    <blockquote style="text-align: center">
+                                        <font face="Cambria" style="color: #006666; font-weight: bold" size="4" >
+                                            Contáctanos.
+                                        </font>
+                                    </blockquote>
+                                    #{bibliotecaTbController.muestraInfo()}
+                                </div>
+                            </h:panelGroup>
+                        </p:panelGrid>
+                    </div>
+                </h:form>
+
+                <!-- Fin Contactano-->
+
+
 
             </h:form>
         </ui:define>

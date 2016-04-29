@@ -13,20 +13,21 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.view.ViewScoped;
 
 @Named("bibliotecaTbController")
-@SessionScoped
+@ViewScoped
 public class BibliotecaTbController implements Serializable {
 
     @EJB
     private servicio.BibliotecaTbFacade ejbFacade;
     private List<BibliotecaTb> items = null;
     private BibliotecaTb selected;
+    private int control = 1;
 
     public BibliotecaTbController() {
     }
@@ -53,6 +54,14 @@ public class BibliotecaTbController implements Serializable {
         selected = new BibliotecaTb();
         initializeEmbeddableKey();
         return selected;
+    }
+
+    public int getControl() {
+        return control;
+    }
+
+    public void setControl(int control) {
+        this.control = control;
     }
 
     public void create() {
@@ -161,42 +170,103 @@ public class BibliotecaTbController implements Serializable {
         }
 
     }
-    
-    public String muestraHistoria(){
-        String txt="";
+
+    public String muestraHistoria() {
+        String txt = "";
         BibliotecaTb h = new BibliotecaTb();
-        h = getFacade().Buscar();
-        txt= h.getMHistoria();
+        try {
+            h = getFacade().Buscar();
+            txt = h.getMHistoria();
+        } catch (Exception e) {
+            txt = "";
+        }
+        return txt;
+    }
+
+    public String muestraInfo() {
+        String txt = "";
+        BibliotecaTb h = new BibliotecaTb();
+        try {
+            h = getFacade().Buscar();
+            txt = h.getMInformacion();
+        } catch (Exception e) {
+            txt = "";
+        }
+        return txt;
+    }
+
+    public String muestraMision() {
+        String txt = "";
+        BibliotecaTb h = new BibliotecaTb();
+        try {
+            h = getFacade().Buscar();
+            txt = h.getMMision();
+        } catch (Exception e) {
+            txt = "";
+        }
+
+        return txt;
+    }
+
+    public String muestraVision() {
+        String txt = "";
+        BibliotecaTb h = new BibliotecaTb();
+        try {
+            h = getFacade().Buscar();
+            txt = h.getMVision();
+        } catch (Exception e) {
+            txt = "";
+        }
+
+        return txt;
+    }
+
+    public String muestraObjetivo() {
+        String txt = "";
+        BibliotecaTb h = new BibliotecaTb();
+        try {
+            h = getFacade().Buscar();
+            txt = h.getMObjetivo();
+        } catch (Exception e) {
+            txt = "";
+        }
+
         return txt;
     }
     
-    public String muestraInfo(){
-        String txt="";
+    public String muestraHistoriaHerbario() {
+        String txt = "";
         BibliotecaTb h = new BibliotecaTb();
-        h = getFacade().Buscar();
-        txt=h.getMInformacion();
+        try {
+            h = getFacade().Buscar();
+            txt = h.getMHistoriab();
+        } catch (Exception e) {
+            txt = "";
+        }
+
         return txt;
     }
-    public String muestraMision(){
-        String txt="";
-        BibliotecaTb h = new BibliotecaTb();
-        h = getFacade().Buscar();
-        txt= h.getMMision();
-        return txt;
-    }
-    public String muestraVision(){
-        String txt="";
-        BibliotecaTb h = new BibliotecaTb();
-        h = getFacade().Buscar();
-        txt= h.getMVision();
-        return txt;
-    }
-    public String muestraObjetivo(){
-        String txt="";
-        BibliotecaTb h = new BibliotecaTb();
-        h = getFacade().Buscar();
-        txt= h.getMObjetivo();
-        return txt;
+
+    public void controlarInformacion(int a) {
+        if (a == 1) {
+            control = 1;
+        }
+        if (a == 2) {
+            control = 2;
+        }
+        if (a == 3) {
+            control = 3;
+        }
+        if (a == 4) {
+            control = 4;
+        }
+        if (a == 5) {
+            control = 5;
+        }
+        if (a == 6) {
+            control = 6;
+        }
+
     }
 
 }
