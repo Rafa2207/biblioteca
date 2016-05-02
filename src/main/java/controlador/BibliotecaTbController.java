@@ -65,6 +65,7 @@ public class BibliotecaTbController implements Serializable {
     }
 
     public void create() {
+        
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundlebiblioteca").getString("BibliotecaTbCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -248,6 +249,7 @@ public class BibliotecaTbController implements Serializable {
     }
 
     public void controlarInformacion(int a) {
+        
         if (a == 1) {
             control = 1;
         }

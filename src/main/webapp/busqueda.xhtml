@@ -21,6 +21,7 @@
                 </font>
             </div>
             <h:form id="ListForm">
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                 <p:panelGrid columns="6" class="hide-on-med-and-down" style="width: 800px">
                     <font face="Cambria" style="color: #006666; font-weight: bold" size="5" >
                         Nombre ejemplar:
@@ -31,7 +32,7 @@
                         <f:selectItem itemLabel="Científico" itemValue="2" />
                     </mp:radioButton>
                     <mp:button value="Buscar" icon="mdi-action-find-in-page" actionListener="#{ejemplarTbController.buscar1()}"
-                               update="datalist, :growl"/>
+                               update="datalist messages"/>
 
                 </p:panelGrid>
                 <div data-activates="lateral" class="button-collapse hide-on-large-only">
@@ -47,7 +48,7 @@
                         <f:selectItem itemLabel="Científico" itemValue="2" />
                     </mp:radioButton>
                     <mp:button value="Buscar" icon="mdi-action-find-in-page" actionListener="#{ejemplarTbController.buscar()}"
-                               update="datalist, :growl"/>
+                               update="datalist messages"/>
                     <br/><br/>
 
                 </div>
