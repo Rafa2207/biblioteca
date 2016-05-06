@@ -15,15 +15,15 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            3
+            5
         </session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>bienvenido.xhtml</welcome-file>
     </welcome-file-list>
-    
-<context-param>  
-    <param-name>primefaces.THEME</param-name>  
-    <param-value>bootstrap</param-value>  
-</context-param> 
+       
+    <context-param>  
+        <param-name>primefaces.THEME</param-name>  
+        <param-value>bootstrap</param-value>  
+    </context-param> 
 </web-app>
