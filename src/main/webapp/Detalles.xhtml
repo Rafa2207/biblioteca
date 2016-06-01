@@ -22,7 +22,7 @@
                 </font>
             </div>
             <h:form id="ListForm">
-                
+
                 <!-- PC-->
                 <p:panelGrid columns="2" columnClasses="cincuenta-porciento, cincuenta-porciento" class="hide-on-med-and-down">
                     <h:panelGroup>
@@ -123,14 +123,17 @@
                         </div>
                     </h:panelGroup>
 
+                    <!-- <h:panelGroup>
+                         <div align="center">
+                             <p:imageSwitch  effect="fade" slideshowSpeed="3000" >
+                                 <ui:repeat value="#{imagenTbController.imagenes()}" var="image">
+                                     <p:graphicImage library="ruta" name="Captura.PNG" id="image" height="500" width="500"/>
+                                 </ui:repeat>
+                             </p:imageSwitch>
+                         </div>
+                     </h:panelGroup>-->
                     <h:panelGroup>
-                        <div align="center">
-                            <p:imageSwitch  effect="fade" slideshowSpeed="3000" >
-                                <ui:repeat value="#{imagenTbController.imagenes()}" var="image">
-                                    <p:graphicImage library="ruta" name="Captura.PNG" id="image" height="500" width="500"/>
-                                </ui:repeat>
-                            </p:imageSwitch>
-                        </div>
+                        <img src="resources/images/concha1.png"></img>
                     </h:panelGroup>
                 </p:panelGrid>
 

@@ -249,7 +249,6 @@ public class BibliotecaTbController implements Serializable {
     }
 
     public void controlarInformacion(int a) {
-        
         if (a == 1) {
             control = 1;
         }
