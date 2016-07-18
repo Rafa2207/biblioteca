@@ -211,6 +211,8 @@ public class EjemplarTbController implements Serializable {
     }
 
     public String calcularTaxonomia(TaxonomiaTb tax) {
+        try {
+            
         if (tax.getERango() == 1) {
             return "-";
         }
@@ -234,6 +236,10 @@ public class EjemplarTbController implements Serializable {
             String especie = tax.getEIdniveltaxonomia().getCNombre();
             String variedad = tax.getCNombre();
             return genero + ", " + especie + " var. " + variedad;
+        }
+        
+        } catch (Exception e) {
+            
         }
         return "";
     }

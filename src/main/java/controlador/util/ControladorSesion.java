@@ -29,21 +29,6 @@ public class ControladorSesion implements Serializable {
         this.ejemplar = ejemplar;
     }
     
-    //private TaxonomiaTb taxonomia;
-
-    /*
-     public FamiliaTb getFamilia() {
-     return familia;
-     }
-
-     public void setFamilia(FamiliaTb familia) {
-     this.familia = familia;
-     }
-     */
-
-    /**
-     * Creates a new instance of ControladorSesion
-     */
     public ControladorSesion() {
     }
 

@@ -74,11 +74,11 @@
                     <p:ajax event="rowSelect"   update=":ListForm:Buscar"/>
                     <p:ajax event="rowUnselect" update=":ListForm:Buscar"/>
 
-                    <p:column width="15%" filterBy="#{item.EIdtaxonomia.CNombre}" filterStyle="display:none">
+                    <p:column width="15%" filterBy="#{ejemplarTbController.calcularFamilia(item.EIdtaxonomia)}" filterStyle="display:none">
                         <f:facet name="header">
                             <h:outputText value="Familia"/>
                         </f:facet>
-                        <h:outputText value="#{item.EIdtaxonomia.CNombre}"/>
+                        <h:outputText style="font-weight: bold" value="#{ejemplarTbController.calcularFamilia(item.EIdtaxonomia)}"/>
                     </p:column>
                     <p:column style="text-align: center" filterBy="#{ejemplarTbController.calcularTaxonomia(item.EIdtaxonomia)}" filterStyle="display:none">
                         <f:facet name="header">

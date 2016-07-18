@@ -15,7 +15,7 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            5
+            1
         </session-timeout>
     </session-config>
     <welcome-file-list>
@@ -30,7 +30,8 @@
     <context-param>
         <description>Path where pictures will be stored</description>
         <param-name>pictures_directory_path</param-name>
-        <!-- <param-value>/home/olvarey/temporalArchivos/</param-value>-->
-        <param-value>c://muestras/</param-value>
+        <param-value>/home/rafa2207/images/</param-value>
+       <!-- <param-value>c://images/</param-value>-->
+
     </context-param>
 </web-app>

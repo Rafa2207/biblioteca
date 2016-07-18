@@ -19,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import modelo.TaxonomiaTb;
 
 @Named("imagenTbController")
 @SessionScoped
@@ -173,6 +174,18 @@ public class ImagenTbController implements Serializable {
             
         }
         return images1;
+    }
+    
+    public List<String> imagenesEjemplar(TaxonomiaTb t) {
+        List<String> rutaImagenes = new ArrayList<String>();
+        for (ImagenTb i:t.getImagenTbList()) {
+            //ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            //String realPath = UtilPath.getPathDefinida(ec.getRealPath("/"));
+            //String pathDefinition = realPath + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "images" + File.separator;
+            rutaImagenes.add(i.getEIdtaxonomia().getEIdtaxonomia()+"/"+i.getCNombre());   
+            System.out.println(rutaImagenes);
+        }
+        return rutaImagenes;
     }
 
 }

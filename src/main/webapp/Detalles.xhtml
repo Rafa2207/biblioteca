@@ -67,12 +67,18 @@
 
                         </div>
                     </h:panelGroup>
-                    <h:panelGroup>
-                        <p:imageSwitch class="z-depth-3 hide-on-med-and-down" effect="fade" slideshowSpeed="3000" widgetVar="switcher" id="manuelSwitcher">
-                            <ui:repeat value="#{imagenTbController.imagenes()}" var="image" id="manuelSwitcherImages">
-                                <p:graphicImage name="images/galeria/#{image}" id="image" height="500" width="100%"/>
+
+                    <h:panelGroup rendered="#{not empty controladorSesion.ejemplar.EIdtaxonomia.imagenTbList}">
+                        <p:imageSwitch class="z-depth-3 hide-on-med-and-down z-depth-3" effect="fade" slideshowSpeed="3000" widgetVar="switcher" id="manuelSwitcher">
+                            <ui:repeat value="#{imagenTbController.imagenesEjemplar(controladorSesion.ejemplar.EIdtaxonomia)}" 
+                                       var="image" id="manuelSwitcherImages">
+                                <h:graphicImage value="/images/#{image}" id="image" height="500" width="100%"/>
                             </ui:repeat>
                         </p:imageSwitch>
+                    </h:panelGroup>
+                    
+                    <h:panelGroup rendered="#{empty controladorSesion.ejemplar.EIdtaxonomia.imagenTbList}">
+                        <p:graphicImage class="z-depth-3" name="images/galeria/nature1.jpg" id="image" height="500" width="100%"/>
                     </h:panelGroup>
                 </p:panelGrid>
 
@@ -123,18 +129,24 @@
                         </div>
                     </h:panelGroup>
 
-                    <!-- <h:panelGroup>
-                         <div align="center">
-                             <p:imageSwitch  effect="fade" slideshowSpeed="3000" >
-                                 <ui:repeat value="#{imagenTbController.imagenes()}" var="image">
-                                     <p:graphicImage library="ruta" name="Captura.PNG" id="image" height="500" width="500"/>
-                                 </ui:repeat>
-                             </p:imageSwitch>
-                         </div>
-                     </h:panelGroup>-->
-                    <h:panelGroup>
-                        <img src="resources/images/concha1.png"></img>
+                    
+                    
+                    <h:panelGroup rendered="#{empty controladorSesion.ejemplar.EIdtaxonomia.imagenTbList}">
+                        <p:graphicImage class="z-depth-3" name="images/galeria/nature1.jpg" id="image1" height="500" width="100%"/>
                     </h:panelGroup>
+                    
+                    <h:panelGroup rendered="#{not empty controladorSesion.ejemplar.EIdtaxonomia.imagenTbList}">
+                        <p:imageSwitch class="z-depth-3" effect="fade" slideshowSpeed="3000" widgetVar="switcher" id="manuelSwitcher1">
+                            <ui:repeat value="#{imagenTbController.imagenesEjemplar(controladorSesion.ejemplar.EIdtaxonomia)}" var="image" id="manuelSwitcherImages1">
+                                <h:graphicImage value="/images/#{image}" id="image1" height="500" width="100%"/>
+                            </ui:repeat>
+                        </p:imageSwitch>
+                    </h:panelGroup>
+
+                    <!--<h:panelGroup>
+                        <img src="#{request.contextPath}/temporalArchivos/ViviImagen.jpg" height="500" width="500"/>
+                        <h:graphicImage value="/temporalArchivos/ViviImagen.jpg" />
+                    </h:panelGroup>-->
                 </p:panelGrid>
 
 

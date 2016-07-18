@@ -34,7 +34,7 @@ public class EjemplarTbFacade extends AbstractFacade<EjemplarTb> {
     }
 
     public List<EjemplarTb> EjemplaresPorNombreCientifico(String nombre) {
-        String Sentencia = "select * from ejemplar_tb e inner join taxonomia_tb t on e.e_idtaxonomia=t.e_idtaxonomia where t.c_nombre like '%"+nombre+"%'";
+        String Sentencia = "select * from ejemplar_tb e inner join taxonomia_tb t on e.e_idtaxonomia=t.e_idtaxonomia where upper(t.c_nombre) like upper('%"+nombre+"%')";
         Query query = em.createNativeQuery(Sentencia, EjemplarTb.class);
         return query.getResultList();
     }
@@ -46,7 +46,6 @@ public class EjemplarTbFacade extends AbstractFacade<EjemplarTb> {
     }
     
     public List<AgenteIdentificaEjemplarTb> ejemplarRecolector(Integer ejemplar, String recolector) {
-
         TypedQuery<AgenteIdentificaEjemplarTb> query = em.createQuery("SELECT p FROM AgenteIdentificaEjemplarTb p WHERE p.ejemplarTb.eIdejemplar=:h AND p.agenteIdentificaEjemplarTbPK.cTipo=:recol ORDER BY P.eSecuencia", AgenteIdentificaEjemplarTb.class);
         query.setParameter("h", ejemplar);
         query.setParameter("recol", recolector);
